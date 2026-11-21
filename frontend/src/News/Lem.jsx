@@ -44,7 +44,7 @@ const Lim = () => {
 
       {breakingNews && (
         <section className="pt-24 px-6">
-          <h2 className="text-2xl font-bold text-center mb-4">Actualités de dernière minute</h2> {/* French for "Breaking News" */}
+          <h2 className="text-2xl font-bold text-center mb-4  text-white">Actualités de dernière minute</h2> {/* French for "Breaking News" */}
           <div className={`max-w-4xl mx-auto ${theme === "light" ? "bg-gray-200" : "bg-gray-800"} p-6 rounded-lg`}>
             <img src={breakingNews.urlToImage} alt="Actualités de dernière minute" className="w-full h-64 object-cover rounded" />
             <h2 className={`text-xl mt-4 font-semibold ${theme === "light" ? "text-black" : "text-white"}`}>{breakingNews.title}</h2>
@@ -55,17 +55,17 @@ const Lim = () => {
 
       
       <section className="px-6 py-12">
-        <h2 className="text-2xl font-bold text-center mb-4">Titres principaux</h2> {/* French for "Top Headlines" */}
+        <h2 className="text-2xl font-bold text-center mb-4  text-white">Titres principaux</h2> {/* French for "Top Headlines" */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {topNews.map((news, index) => (
             <NewsCard key={index} news={news} theme={theme} />
           ))}
         </div>
       </section>
-      <section className="px-6 py-12">
-        <NewsCategory title="Actualités sportives" newsData={sportsNews} theme={theme} /> {/* French for "Sports News" */}
-        <NewsCategory title="Actualités économiques" newsData={businessNews} theme={theme} /> {/* French for "Business News" */}
-        <NewsCategory title="Actualités technologiques" newsData={techNews} theme={theme} /> {/* French for "Technology News" */}
+      <section className="px-6 py-12 ">
+        <NewsCategory title="Actualités sportives" newsData={sportsNews}  /> {/* French for "Sports News" */}
+        <NewsCategory title="Actualités économiques" newsData={businessNews}  /> {/* French for "Business News" */}
+        <NewsCategory title="Actualités technologiques" newsData={techNews}  /> {/* French for "Technology News" */}
       </section>
 
     </div>

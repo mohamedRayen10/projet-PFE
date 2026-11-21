@@ -1,9 +1,11 @@
 import express from 'express';
-import { submitPayment } from '../controllers/payment.controller.js';
+import { submitPayment, confirmPayment, getPaymentHistory } from '../controllers/payment.controller.js';
+import { verifyUser } from '../utils/verifyUser.js';
 
 const router = express.Router();
 
-// POST route to handle payment submission
-router.post('/submit-payment', submitPayment);
+router.post('/submit-payment', verifyUser, submitPayment);
+router.post('/confirm', verifyUser, confirmPayment);
+router.get('/payment-history', verifyUser, getPaymentHistory);  // <-- Ajout de la route historique avec verifyUser
 
 export default router;

@@ -2,7 +2,7 @@ import { Button, Select, TextInput } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import PostCard from '../components/PostCard';
-import Head2 from '../components/Head2';
+
 
 export default function Search() {
   const [sidebarData, setSidebarData] = useState({
@@ -121,7 +121,7 @@ export default function Search() {
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-800 transition-all">
-      <Head2 />
+      
       <div className="flex justify-between p-6">
         <div className="flex items-center">
           <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Search</h2>

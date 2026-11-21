@@ -4,11 +4,22 @@ import DashSidebar from '../components/DashSidebar';
 import DashProfile from '../components/DashProfile';
 import DashPosts from '../components/DashPosts';
 import DashUsers from '../components/DashUsers';
+import DashCalendar from '../components/Calendar';
+import FAQ from '../components/FAQ';
+import Team from '../components/Team';
+import Events from '../pages/Events';
+import Blog from '../pages/Blog';
+import Det from '../pages/Det';
+import Chatroom from '../pages/Chatroom';
+import DasboardStripe from '../pages/DasboardStripe';
+import NewsApp from '../pages/NewsApp';
+import Geography from '../components/geography/Geography';
 import DashComments from '../components/DashComments';
 import DashboardComp from '../components/DashboardComp';
-import Head2 from '../components/Head2';
-import DashboardCharts from '../components/DashboardCharts';
 
+import DiscordPage from '../components/DiscordPage';
+import GameCards from '../components/GameCards';
+import Form from '../components/Form';
 const Dashboard = () => {
   const location = useLocation();
   const [tab, setTab] = useState('');
@@ -27,49 +38,31 @@ const Dashboard = () => {
         <DashSidebar />
       </div>
       <div className="flex-1 p-4">
-        <Head2 />
+      
 
         {/* Tabs */}
         {tab === 'profile' && <DashProfile />}
         {tab === 'posts' && <DashPosts />}
         {tab === 'users' && <DashUsers />}
+        {tab === 'calendar' && <DashCalendar />}
         {tab === 'comments' && <DashComments />}
+        {tab === 'FAQ' && <FAQ />}
+        {tab === 'Team' && <Team />}
+        {tab === 'Geography' && <Geography/>}
+        {tab === 'Events' && <Events/>}
+        {tab === 'Form' && <Form/>}
+        {tab === 'Blog' && <Blog/>}
+        {tab === 'NewsApp' && <NewsApp/>}
+        {tab === 'GameCards' && <GameCards/>}
+        {tab === 'DiscordPage' && <DiscordPage/>}
+        {tab === 'Chatroom' && <Chatroom/>}
+        {tab === 'Det' && <Det/>}
         {tab === 'dash' && (
           <div>
             <DashboardComp />
-            <div className="relative min-h-screen overflow-hidden">
-  {/* Background Video */}
-  <div className="relative min-h-screen overflow-hidden">
-  {/* 🎥 Ultra-Clear Video Background */}
-  <video
-    autoPlay
-    loop
-    muted
-    playsInline
-    className="absolute top-0 left-0 w-full h-full object-cover z-0"
-    style={{
-      filter: "none",         // ✅ no blur
-      opacity: 1,             // ✅ full clarity
-      transform: "none",      // ✅ no distortion
-    }}
-  >
-    <source src="/videos/1st.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
+            <DasboardStripe />
+            
 
-  {/* Foreground Content */}
-  <div className="relative z-10 max-w-7xl mx-auto px-6 py-10">
-    <div className="p-6 rounded-xl shadow-xl bg-transparent">
-      <DashboardCharts />
-    </div>
-  </div>
-</div>
-
-
-
-
-
-</div>
 
             
           </div>

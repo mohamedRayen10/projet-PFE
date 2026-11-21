@@ -1,23 +1,25 @@
 import mongoose from 'mongoose';
 
-// Define the schema for Payment
-const paymentSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  paymentMethod: {
-    type: String,
-    required: true,
-  },
-}, { timestamps: true });
 
-// Create and export the Payment model
-const Payment = mongoose.model('Payment', paymentSchema);
+
+const paymentSchema = new mongoose.Schema({
+  paymentId:
+   { type: Number, required: true, unique: true },
+  amount: 
+  { type: Number, required: true },
+  paymentDate: 
+  { type: Date, default: Date.now },
+  userId: 
+  { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  method: 
+  { type: String, required: true },
+  stripeTransactionId: 
+  { type: String },
+  status:
+  { type: String, required: true }
+
+});
+
+const Payment = mongoose.model("Payment", paymentSchema);
 
 export default Payment;

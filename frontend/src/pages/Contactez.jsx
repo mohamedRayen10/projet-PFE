@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Head2 from '../components/Head2';
 import { LoadScript, GoogleMap, Marker } from '@react-google-maps/api';
 
 const Contactez = () => {
@@ -17,6 +18,7 @@ const Contactez = () => {
   };
 
   return (
+    <div><Head2 />
     <div className="min-h-screen flex justify-center items-center">
       <div className="max-w-md w-full p-6 bg-white shadow-md rounded-lg">
         <h2 className="text-2xl font-bold text-center mb-6">Contactez-Nous</h2>
@@ -89,6 +91,7 @@ const Contactez = () => {
           </LoadScript>
         </div>
       </div>
+    </div>
     </div>
   );
 };

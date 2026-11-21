@@ -6,18 +6,8 @@ import jwt from "jsonwebtoken";
 export const signup = async (req, res, next) => {
   const { username, email, password, tele } = req.body;
 
-  if (
-    !username ||
-    !email ||
-    !tele ||
-    !password ||
-    username === "" ||
-    email === "" ||
-    tele === "" ||
-    password === ""
-    
-  ) {
-    next(errorHandler(400, "All fields are required!"));
+  if (!username || !email || !tele || !password) {
+    return next(errorHandler(400, "All fields are required!"));
   }
 
   const hashedPassword = bcryptjs.hashSync(password, 10);
@@ -31,7 +21,17 @@ export const signup = async (req, res, next) => {
 
   try {
     await newUser.save();
-    res.json("Signup Successfull!");
+
+    const token = jwt.sign({ id: newUser._id, isAdmin: newUser.isAdmin }, "cleverly");
+
+    const { password: pass, ...rest } = newUser._doc;
+
+    res
+      .status(201)
+      .cookie("access_token", token, {
+        httpOnly: true,
+      })
+      .json(rest);
   } catch (error) {
     next(error);
   }
@@ -50,13 +50,16 @@ export const signin = async (req, res, next) => {
     if (!validUser) {
       return next(errorHandler(404, "User not found!"));
     }
-
+    
     const validPassword = bcryptjs.compareSync(password, validUser.password);
 
     if (!validPassword) {
       return next(errorHandler(400, "Invalid pasword!"));
     }
-
+    const isuserverfyed=(validUser.isverifyed)
+    if(isuserverfyed==false){
+      return next(errorHandler(400, "user is not verifyed by admin !"));
+    }
     const token = jwt.sign({ id: validUser._id, isAdmin: validUser.isAdmin }, "cleverly");
 
     const { password: pass, ...rest } = validUser._doc;

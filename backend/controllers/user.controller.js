@@ -1,6 +1,38 @@
 import User from "../models/user.model.js";
 import { errorHandler } from "../utils/error.js";
 
+export const createUser = async (req, res, next) => {
+  try {
+    const newUser = new User(req.body);
+    await newUser.save();
+    const { password, ...rest } = newUser._doc;
+    res.status(201).json(rest);
+  } catch (error) {
+    next(error);
+  }
+};
+export const toggleVerifyUser = async (req, res, next) => {
+  if (!req.user.isAdmin) {
+    return next(errorHandler(403, "Non autorisée"));
+  }
+
+  try {
+    const user = await User.findById(req.params.userId);
+    if (!user) {
+      return next(errorHandler(404, "Utilisateur introuvable"));
+    }
+
+    user.isverifyed = !user.isverifyed;
+    const updatedUser = await user.save();
+
+    const { password, ...rest } = updatedUser._doc;
+    res.status(200).json(rest);
+  } catch (error) {
+    next(error);
+  }
+};
+
+
 export const test = (req, res) => {
   res.json({ message: "Bonjour de Test Backend" });
 };
